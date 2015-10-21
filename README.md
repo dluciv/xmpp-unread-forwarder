@@ -59,10 +59,11 @@ Software to run this Script
 Instructions
 ============
 
-1. Create [JSON](http://json.org/) config file based on `example.cfg`. Store it in some *secure* place. Passwords are unencrypted in it.
-2. Create launcher script based on `_run.sh` or `_run.bat`.
-3. Run this script every time after your client logs in. Or automate it in some way.
-4. Enjoy.
+1. Satisfy all above dependencies.
+2. Create [JSON](http://json.org/) config file based on `example.cfg`. Store it in some *secure* place. Passwords are unencrypted in it.
+3. Create launcher script based on `_run.sh` or `_run.bat`.
+4. Run this script every time after your client logs in. Or automate it in some way you like.
+5. Enjoy.
 
 Technical comments
 ==================
