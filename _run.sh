@@ -1,2 +1,2 @@
 #!/bin/sh
-lsc xmppforward.ls {{Some very provate folder}}/xmppforward.cfg
+lsc xmppforward.ls {{Some very private folder}}/xmppforward.cfg
