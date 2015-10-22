@@ -1,7 +1,7 @@
 fs = require \fs
 nxc = require \node-xmpp-client
 events = require \events
-prelude = require \prelude-ls
+pr = require \prelude-ls
 
 # Forward unread Messages is imlemented in different ways for different clients
 commandnodes =
@@ -51,9 +51,9 @@ class ResourceConversation
           for item in query.children
             if item.name == 'item'
               # then test if it is forwarding command
-              if commandnodes.indexOf(item.attrs.node) >= 0
+              if pr.elem-index item.attrs.node, commandnodes
                 cmd = item.attrs.node
-                console.log "#{@interlocutor} exposes #{cmd}"
+                console.log "#{@interlocutor} exposes \"#{cmd}\""
                 break searchcmds
     else
       @unknown_stanza iq
@@ -101,7 +101,7 @@ process_account = (connjidstr, targetresource, mypassword)->
     forwarded = 0
 
     check_and_finish_account = !->
-      if prelude.empty prelude.keys conversations
+      if pr.empty pr.keys conversations
         # When all resources are processed, wait 3 s., disconect and end up with this account
         setTimeout ->
           account_processed "#{targetjid}, forwarded #{forwarded} messages"
@@ -184,7 +184,7 @@ account_processed = (jid)->
     process.exit 0
     
 
-config_filename = process.argv.slice(-1)[0]
+config_filename = pr.last process.argv
 
 do
   err, cfgfc <-! fs.readFile config_filename, 'utf8'
