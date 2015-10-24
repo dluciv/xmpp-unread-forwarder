@@ -18,6 +18,15 @@ str2jid = (str)->
     j.resource = jr[1]
     j
 
+# nearly flip compact map
+fcmap = (l, fn)->
+  result = []
+  for e in l
+    r = fn e
+    if void != r
+      result.push r
+  result
+
 class ResourceConversation
 
   (@client, @targetjid, @finished)~>
@@ -44,27 +53,28 @@ class ResourceConversation
 
   handle_commands: (iq)!~>
     # look through available ad-hoc commands and find known forwarding ones
-    cmd = null
-    :searchcmds if iq.is 'iq' and iq.type == 'result'
-      for query in iq.children
-        if query.name == 'query'
-          for item in query.children
-            if item.name == 'item'
-              # then test if it is forwarding command
-              if void != pr.elem-index item.attrs.node, commandnodes
-                cmd = item.attrs.node
-                console.log "#{@interlocutor} exposes \"#{cmd}\""
-                break searchcmds
+    if iq.is 'iq' and iq.type == 'result'
+      cmd = pr.head <| pr.intersection commandnodes, (pr.flatten <| fcmap iq.children, (query)->
+        if query.name != 'query'
+          void
+        else
+          fcmap query.children, (item)->
+            if item.name != 'item'
+              void
+            else item.attrs.node)
+
+      if void != cmd
+        console.log "#{@interlocutor} exposes \"#{cmd}\""
+        @inbound.on 'evt', @handle_message # many messages, so not `once`
+        @client.send """<iq type="set" to="#{@interlocutor}">
+            <command xmlns="http://jabber.org/protocol/commands" node="#{cmd}"/>
+          </iq>"""
+      else
+        @finished 0, "#{@interlocutor} exposed no known commands"
+
     else
       @unknown_stanza iq
 
-    if cmd
-      @inbound.on 'evt', @handle_message # many messages, so not `once`
-      @client.send """<iq type="set" to="#{@interlocutor}">
-          <command xmlns="http://jabber.org/protocol/commands" node="#{cmd}"/>
-        </iq>"""
-    else
-      @finished 0, "#{@interlocutor} exposed no known commands"
 
   handle_message: (msg)!~>
     if msg.is 'message'
