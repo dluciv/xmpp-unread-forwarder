@@ -33,7 +33,7 @@ class ResourceConversation
       </iq>"""
 
   unknown_stanza: (stz)!~>
-    console.warning """UNKNOWN STANZA:
+    console.error """UNKNOWN STANZA:
       [[[ #{stz.toString!} ]]]"""
 
   forward: (msg)!~>
@@ -51,7 +51,7 @@ class ResourceConversation
           for item in query.children
             if item.name == 'item'
               # then test if it is forwarding command
-              if pr.elem-index item.attrs.node, commandnodes
+              if void != pr.elem-index item.attrs.node, commandnodes
                 cmd = item.attrs.node
                 console.log "#{@interlocutor} exposes \"#{cmd}\""
                 break searchcmds
