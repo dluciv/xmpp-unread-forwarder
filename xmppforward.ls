@@ -108,10 +108,9 @@ process_account = (connjidstr, targetresource, mypassword)->
     check_and_finish_account = !->
       if pr.empty pr.keys conversations
         # When all resources are processed, wait 3 s., disconect and end up with this account
-        setTimeout ->
+        (pr.flip setTimeout) 3000, !->
           account_processed "#{targetjid}, forwarded #{forwarded} messages"
           client.connection.end!
-        , 3000
 
     # Get ready to handle incoming stanzas
     do
@@ -135,14 +134,13 @@ process_account = (connjidstr, targetresource, mypassword)->
               nondegenerate_resources_found = true
               clearTimeout degenerate_timeout
 
-              setTimeout ->
+              (pr.flip setTimeout) 1500, !->
                 conversations[stanza.attrs.from] = new ResourceConversation client, targetjid, (cnt, msg)->
                   delete conversations[stanza.attrs.from]
                   forwarded += cnt
                   console.log msg
                   check_and_finish_account!
                 conversations[stanza.attrs.from].inbound.emit 'evt', stanza
-              , 1500
             else
               # console.log """|- presence #{prjid}, resource #{prjid.resource} -- not asking to forward from"""
               {}
@@ -163,11 +161,10 @@ process_account = (connjidstr, targetresource, mypassword)->
             """  
 
     # For situation when only this script and/or target resource is connected to account -- wait for 15 s. and finish it.
-    degenerate_timeout = setTimeout ->
+    degenerate_timeout = (pr.flip setTimeout) 15000, !->
       if not nondegenerate_resources_found
         console.log "No non-degenerate resources under #{connjid}..."
         check_and_finish_account!
-    , 15000
 
   console.log "Connecting to #{connjid}..."
   client.connect()    
