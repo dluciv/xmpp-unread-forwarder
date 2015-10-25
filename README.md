@@ -7,11 +7,13 @@ them to given resource then.
 Example use case
 ================
 
+![Gripping and abusing chat](t-rex-chatting.gif)
+
 I participate in gripping (and probably abusing) Jabber chat using
-office computer. Then something makes me to leave immediately.
-My client software continues receiving messages. When I come home,
-my home client goes online and its priority becomes highest, so it
-receives messages by default from now.
+office computer. Approximately as the picture shows. Then something
+makes me to leave immediately. My client software continues receiving
+messages. When I come home, my home client goes online and its priority
+becomes highest, so it receives messages by default from now.
 
 But I should ask my office Jabber client to forward all unread messages
 to my home one to be up to date and to continue chatting.
@@ -68,7 +70,8 @@ Instructions
 Technical comments
 ==================
 
-There is actually a lot of XMPP client libraries and, at the same time, a lack of good simple cross-platform ones.
+There is actually a lot of XMPP client libraries and, at the same time, a lack of good simple and
+lightweight cross-platform ones.
 
 Probably the main reason for it is that XMPP actually goes to kick the bucket. It lacks mobile features --- its design
 just does not correstpond to mobile use cases. It defines [message carbons](http://xmpp.org/extensions/xep-0280.html)
@@ -77,6 +80,6 @@ is nearly impossible to find out running clients and servers doing this well. De
 look best of his friends for me. Other ones are either propietary and vendor-based or even work worse than XMPP itself,
 and most of them do actually have the both properties =).
 
-For such a small script, Node XMPP Client has shown itself better than other lightweight libraries for scripting languages.
-But event itself looks imperfect. Still and all, my knowledge of both this library and Node.js itself is even worse. My
+For such a small script, Node XMPP Client has shown itself better than other libraries for scripting languages.
+But even itself looks imperfect. Still and all, my knowledge of both this library and Node.js itself is even worse. My
 XMPP knowledge could also be much better. So technical suggestions are welcome =).
