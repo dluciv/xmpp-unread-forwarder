@@ -18,14 +18,9 @@ str2jid = (str)->
     j.resource = jr[1]
     j
 
-# nearly flip compact map
-fcmap = (l, fn)->
-  result = []
-  for e in l
-    r = fn e
-    if void != r
-      result.push r
-  result
+# (nearly compact)-flip-map
+cfmap = (l, fn)->
+  pr.filter (!= void), (pr.map fn, l)
 
 class ResourceConversation
 
@@ -54,11 +49,11 @@ class ResourceConversation
   handle_commands: (iq)!~>
     # look through available ad-hoc commands and find known forwarding ones
     if iq.is 'iq' and iq.type == 'result'
-      cmd = pr.head <| pr.intersection commandnodes, (pr.flatten <| fcmap iq.children, (query)->
+      cmd = pr.head <| pr.intersection commandnodes, (pr.flatten <| cfmap iq.children, (query)->
         if query.name != 'query'
           void
         else
-          fcmap query.children, (item)->
+          cfmap query.children, (item)->
             if item.name != 'item'
               void
             else item.attrs.node)
