@@ -49,14 +49,14 @@ class ResourceConversation
   handle_commands: (iq)!~>
     # look through available ad-hoc commands and find known forwarding ones
     if iq.is 'iq' and iq.type == 'result'
-      cmd = pr.head <| pr.intersection commandnodes, (pr.flatten <| cfmap iq.children, (query)->
+      cmd = pr.head <| pr.intersection commandnodes, (pr.flatten cfmap iq.children, (query)->
         if query.name != 'query'
           void
-        else
-          cfmap query.children, (item)->
+        else cfmap query.children, (item)->
             if item.name != 'item'
               void
-            else item.attrs.node)
+            else
+              item.attrs.node)
 
       if void != cmd
         console.log "#{@interlocutor} exposes \"#{cmd}\""
