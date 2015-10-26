@@ -6,7 +6,7 @@ pr = require \prelude-ls
 # Forward unread Messages is imlemented in different ways for different clients
 commandnodes =
   'http://jabber.org/protocol/rc#forward' # Psi+, Psi, Tkabber, Miranda, LeechCraft Azoth
-  'forward-messages' # Gajim
+  'forward-messages' # Gajim (lone and proud %) )
 
 # Workaround for buggy JID parser https://github.com/node-xmpp/node-xmpp-client/issues/141
 str2jid = (str)->
@@ -88,7 +88,7 @@ class ResourceConversation
 
 # ----
 
-process_account = (connjidstr, targetresource, mypassword)->
+process_account = (connjidstr, targetresource, mypassword)!->
   connjid = str2jid connjidstr
   connjid.resource = 'unread-forwarder'
   targetjid = new nxc.JID connjid.local, connjid.domain, targetresource
@@ -135,7 +135,7 @@ process_account = (connjidstr, targetresource, mypassword)->
               clearTimeout degenerate_timeout
 
               (pr.flip setTimeout) 1500, !->
-                conversations[stanza.attrs.from] = new ResourceConversation client, targetjid, (cnt, msg)->
+                conversations[stanza.attrs.from] = new ResourceConversation client, targetjid, (cnt, msg)!->
                   delete conversations[stanza.attrs.from]
                   forwarded += cnt
                   console.log msg
@@ -178,7 +178,7 @@ process_account = (connjidstr, targetresource, mypassword)->
 
 remaining_accounts = 0
 
-account_processed = (jid)->
+account_processed = (jid)!->
   remaining_accounts -= 1
   console.log "Done with #{jid}."
   if remaining_accounts == 0
