@@ -26,3 +26,4 @@ This software depends on several external libraries, but does not include them:
 
 * [Node XMPP Client](https://github.com/node-xmpp/node-xmpp-client/blob/master/LICENSE) --- [MIT](https://opensource.org/licenses/MIT)-like license
 * [prelude.ls](https://github.com/gkz/prelude-ls/blob/master/LICENSE) --- [MIT](https://opensource.org/licenses/MIT) license
+* [LiveScript](https://github.com/gkz/LiveScript/blob/master/LICENSE) --- [MIT](https://opensource.org/licenses/MIT) license

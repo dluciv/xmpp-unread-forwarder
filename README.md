@@ -54,14 +54,14 @@ Software to run this Script
 
 * [Node.js 0.10.17+](https://nodejs.org/) or [JXcore 0.3.0.7+](http://jxcore.com/)
 * NPM packages installed here or globally:
-    * [LiveScript 1.4.0+](http://livescript.net) (`npm install livescript`)
+    * [LiveScript 1.4.0+](http://livescript.net) itself (`npm install livescript`)
     * [LiveScript Prelude 1.1.2+](http://www.preludels.com/) (`npm install prelude-ls`)
     * [Node XMPP Client 2.0.2+](https://github.com/node-xmpp/node-xmpp-client) (`npm install node-xmpp-client`)
 
 Instructions
 ============
 
-1. Satisfy all above dependencies.
+1. Get script itself and satisfy all above dependencies: `npm install git+https://github.com/dluciv/xmpp-unread-forwarder.git`
 2. Create [JSON](http://json.org/) config file based on `example.cfg`. Store it in some *secure* place. Passwords are unencrypted in it.
 3. Create launcher script based on `_run.sh` or `_run.bat`.
 4. Run this script every time after your client logs in. Or automate it in some way you like.
