@@ -6,4 +6,4 @@ var path = require('path'),
 
 var xfwls  = path.join(path.dirname(fs.realpathSync(__filename)), '../xmppforward.ls');
 
-lsc([process.argv[0], "lsc", xfwls, process.argv[2]]);
+lsc([process.argv[0], "lsc", xfwls].concat(process.argv.slice(2)));
