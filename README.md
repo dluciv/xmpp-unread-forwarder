@@ -54,9 +54,9 @@ Software to run this Script
 
 * [Node.js 0.10.17+](https://nodejs.org/) or [JXcore 0.3.0.7+](http://jxcore.com/)
 * NPM packages installed here or globally:
-    * [LiveScript 1.4.0+](http://livescript.net) itself (`npm install livescript`)
-    * [LiveScript Prelude 1.1.2+](http://www.preludels.com/) (`npm install prelude-ls`)
-    * [Node XMPP Client 2.0.2+](https://github.com/node-xmpp/node-xmpp-client) (`npm install node-xmpp-client`)
+    * [LiveScript 1.4.0+](http://livescript.net)
+    * [LiveScript Prelude 1.1.2+](http://www.preludels.com/)
+    * [Node XMPP Client 2.0.2+](https://github.com/node-xmpp/node-xmpp-client)
 
 Instructions
 ============

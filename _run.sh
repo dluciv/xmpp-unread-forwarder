@@ -1,2 +1,4 @@
 #!/bin/sh
-$(dirname `realpath $0`)/node_modules/.bin/lsc xmppforward.ls {{Some very private folder}}/xmppforward.cfg
+pushd $(dirname `realpath $0`)
+./node_modules/.bin/lsc xmppforward.ls __Some_very_private_folder__/xmppforward.cfg
+popd
