@@ -24,6 +24,6 @@
     "url": "https://github.com/dluciv/xmpp-unread-forwarder/issues"
   },
   "bin": {
-    "xmppfwd.js": "./bin/xmppfwd"
+    "xmppfwd": "./bin/xmppfwd"
   }
 }
