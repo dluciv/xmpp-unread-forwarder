@@ -2,7 +2,6 @@
   "name": "xmpp-unread-forwarder",
   "version": "0.2.0",
   "description": "Small script that connects to several XMPP servers, asks all other clients to forward unread messages to it and forwards them to given resource then",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,5 +22,8 @@
   "license": "WTFPL v2",
   "bugs": {
     "url": "https://github.com/dluciv/xmpp-unread-forwarder/issues"
+  },
+  "bin": {
+    "xmppfwd.js": "./bin/xmppfwd",
   }
 }
