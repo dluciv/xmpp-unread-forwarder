@@ -4,6 +4,11 @@ var path = require('path'),
     fs   = require('fs'),
     lsc = require('livescript/lib/command');
 
-var xfwls  = path.join(path.dirname(fs.realpathSync(__filename)), '../xmppforward.ls');
+var xfwls  = path.join(path.dirname(fs.realpathSync(__filename)), '../xmppforward.ls'),
+    args = process.argv.slice(2);
 
-lsc([process.argv[0], "lsc", xfwls].concat(process.argv.slice(2)));
+if(args.length != 1) {
+  console.error("Pass configuration file as parameter");
+} else {
+  lsc([process.argv[0], "lsc", xfwls].concat(args));
+}
