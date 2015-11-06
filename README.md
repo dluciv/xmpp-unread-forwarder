@@ -58,9 +58,9 @@ Instructions
 ============
 
 1. Get script itself and satisfy all above dependencies: `npm install git+https://github.com/dluciv/xmpp-unread-forwarder.git`
-2. Create [JSON](http://json.org/) config file based on `example.cfg`. Store it in some *secure* place. Passwords are unencrypted in it.
-3. Create launcher script based on `_run.sh` or `_run.bat`.
-4. Run this script every time after your client logs in. Or automate it in some way you like.
+2. Create [JSON](http://json.org/) config file based on `example.cfg`. Store it in some **secure** place. Passwords are **unencrypted** in it.
+3. Run `WHERE_YOU_ARE/node_modules/.bin/xmppfwd YOUR_CONFIG_FILE` or `WHERE_YOU_ARE\node_modules\.bin\xmppfwd.cmd  YOUR_CONFIG_FILE`. It will do the work.
+4. Automate it somehow. Execute it every time your local client gets online.
 5. Enjoy.
 
 Technical comments
