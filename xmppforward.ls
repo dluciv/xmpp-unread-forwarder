@@ -31,8 +31,9 @@ class ResourceConversation
 
   handle_presence: (msg)!~>
     @interlocutor = msg.attrs.from
+    @convid = "#{Math.random()}-#{@interlocutor}"
     @inbound.once 'evt', @handle_commands
-    @client.send """<iq type="get" to="#{@interlocutor}">
+    @client.send """<iq type="get" to="#{@interlocutor}" id="#{@convid}">
         <query xmlns="http://jabber.org/protocol/disco\#items" node="http://jabber.org/protocol/commands"/>
       </iq>"""
 
@@ -48,7 +49,14 @@ class ResourceConversation
 
   handle_commands: (iq)!~>
     # look through available ad-hoc commands and find known forwarding ones
-    if iq.is 'iq' and iq.type == 'result'
+    if iq.is 'iq' and iq.type == 'error'
+      cfmap iq.children, (iqc)~>
+        if iqc.is 'error'
+          cfmap iqc.children, (fni)~>
+            if fni.is 'feature-not-implemented'
+              @finished 0, "#{@interlocutor} does not support ad-hocs"
+
+    else if iq.is 'iq' and iq.type == 'result'
       cmd = pr.head <| pr.intersection commandnodes, (pr.flatten cfmap iq.children, (query)->
         if query.name != 'query'
           void
