@@ -48,6 +48,7 @@ Some clients did not expose any ad hoc commands about unread messages forwarding
 
 * [Pidgin](https://pidgin.im/) --- suddenly... it has rich feature set but so it is
 * [jabber.el](http://www.emacswiki.org/emacs/JabberEl)
+* [Conversations](https://conversations.im/) --- no surprise here, it's mobile one
 
 Software to run this Script
 ---------------------------
