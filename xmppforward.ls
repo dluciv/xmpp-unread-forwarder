@@ -174,6 +174,10 @@ process_account = (connjidstr, targetresource, mypassword)!->
         console.log "No non-degenerate resources under #{connjid}..."
         check_and_finish_account!
 
+  do
+    cerr <-! client.on 'error'
+    account_processed "#{targetjid}, client error: #{cerr}"
+
   console.log "Connecting to #{connjid}..."
   client.connect()    
   
