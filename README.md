@@ -74,8 +74,9 @@ Probably the main reason for it is that XMPP actually goes to kick the bucket. I
 just does not correstpond to mobile use cases. It defines [message carbons](http://xmpp.org/extensions/xep-0280.html)
 and [server history features](http://xmpp.org/extensions/xep-0313.html) to keep history up to date everywhere, but it
 is nearly impossible to find out running clients and servers doing this well. Despite of all this XMPP still does
-look best of his friends for me. Other ones are either propietary and vendor-based or even work worse than XMPP itself,
-and most of them do actually have the both properties =).
+look very good for me when compared to its friends. Other ones are either propietary and vendor-based or even work worse than XMPP itself, and most of them do actually have the both properties =).
+
+Right now I see only http://matrix.org/ being designed good enough to become real competitor to XMPP.
 
 For such a small script, Node XMPP Client has shown itself better than other libraries for scripting languages.
 But even itself looks imperfect. Still and all, my knowledge of both this library and Node.js itself is even worse. My
