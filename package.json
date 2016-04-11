@@ -1,6 +1,6 @@
 {
   "name": "xmpp-unread-forwarder",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Small script that connects to several XMPP servers, asks all other clients to forward unread messages to it and forwards them to given resource then",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

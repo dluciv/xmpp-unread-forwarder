@@ -10,5 +10,5 @@ var xfwls  = path.join(path.dirname(fs.realpathSync(__filename)), '../xmppforwar
 if(args.length != 1) {
   console.error("Pass configuration file as parameter");
 } else {
-  lsc([process.argv[0], "lsc", xfwls].concat(args));
+  lsc([process.argv[0], "lsc", "--const", xfwls].concat(args));
 }

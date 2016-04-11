@@ -109,9 +109,14 @@ process_account = (connjidstr, targetresource, mypassword)!->
     conn_data <-! client.addListener 'online'
     console.log "Connected as #{conn_data.jid.local}@#{conn_data.jid.domain}/#{conn_data.jid.resource}."
 
-    nondegenerate_resources_found = false
     conversations = {}
-    forwarded = 0
+
+    var
+      nondegenerate_resources_found
+      forwarded
+
+    nondegenerate_resources_found := false
+    forwarded := 0
 
     check_and_finish_account = !->
       if pr.empty pr.keys conversations
@@ -139,13 +144,13 @@ process_account = (connjidstr, targetresource, mypassword)!->
             if prjid.resource != conn_data.jid.resource and prjid.resource != targetresource
               console.log """<-! presence #{prjid}, resource #{prjid.resource}"""
 
-              nondegenerate_resources_found = true
+              nondegenerate_resources_found := true
               clearTimeout degenerate_timeout
 
               (pr.flip setTimeout) 1500, !->
                 conversations[stanza.attrs.from] = new ResourceConversation client, targetjid, (cnt, msg)!->
                   delete conversations[stanza.attrs.from]
-                  forwarded += cnt
+                  forwarded := forwarded + cnt
                   console.log msg
                   check_and_finish_account!
                 conversations[stanza.attrs.from].inbound.emit 'evt', stanza
@@ -188,7 +193,8 @@ process_account = (connjidstr, targetresource, mypassword)!->
 
 # ----------------------
 
-remaining_accounts = 0
+var remaining_accounts
+remaining_accounts := 0
 
 account_processed = (jid)!->
   remaining_accounts -= 1
