@@ -197,7 +197,7 @@ var remaining_accounts
 remaining_accounts := 0
 
 account_processed = (jid)!->
-  remaining_accounts = remaining_accounts - 1
+  remaining_accounts := remaining_accounts - 1
   console.log "Done with #{jid}."
   if remaining_accounts == 0
     console.log "No more accounts to process."
