@@ -41,14 +41,15 @@ This script supports forwarding messages to any messenger from:
 * [Psi](http://psi-im.org/)
 * [Miranda NG](http://www.miranda-ng.org/ru/)
 * [Tkabber](http://tkabber.jabber.ru/)
-* [Gajim](http://gajim.org/) --- good client and the *only* one found with forward messages ad-hoc node named `forward-messages` instead of conventional `http://jabber.org/protocol/rc#forward` %)
+* [Gajim](http://gajim.org/) — good client and the *only* one found with forward messages ad-hoc node named `forward-messages` instead of conventional `http://jabber.org/protocol/rc#forward` %)
 * [Azoth](https://leechcraft.org/)
+* Probably a lot of other clients not tested by me
 
 Some clients did not expose any ad hoc commands about unread messages forwarding (or at least I failed to persuade them):
 
-* [Pidgin](https://pidgin.im/) --- suddenly... it has rich feature set but so it is
+* [Pidgin](https://pidgin.im/) — suddenly... it has rich feature set but so it is
 * [jabber.el](http://www.emacswiki.org/emacs/JabberEl)
-* [Conversations](https://conversations.im/) --- no surprise here, it's mobile one
+* [Conversations](https://conversations.im/) — no surprise here, it's mobile one
 
 Software to run this Script
 ---------------------------
@@ -70,7 +71,7 @@ Technical comments
 There is actually a lot of XMPP client libraries and, at the same time, a lack of good simple and
 lightweight cross-platform ones.
 
-Probably the main reason for it is that XMPP actually goes to kick the bucket. It lacks mobile features --- its design
+Probably the main reason for it is that XMPP actually goes to kick the bucket. It lacks mobile features — its design
 just does not correstpond to mobile use cases. It defines [message carbons](http://xmpp.org/extensions/xep-0280.html)
 and [server history features](http://xmpp.org/extensions/xep-0313.html) to keep history up to date everywhere, but it
 is nearly impossible to find out running clients and servers doing this well. Despite of all this XMPP still does
