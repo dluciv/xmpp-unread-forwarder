@@ -96,11 +96,13 @@ class ResourceConversation
 
 # ----
 
-process_account = (connjidstr, targetresource, mypassword)!->
+process_account = (connjidstr, targetresource, mypassword, preferred-sasl)!->
   connjid = str2jid connjidstr
   connjid.resource = 'unread-forwarder'
   targetjid = new nxc.JID connjid.local, connjid.domain, targetresource
-  client = new nxc.Client do
+  client = new nxc.Client pr.Obj.reject (== void), do
+    reconnect: true
+    preferred: preferred-sasl
     autostart: false
     jid: connjid.toString!
     password: mypassword
@@ -211,4 +213,4 @@ do
   cfg = JSON.parse cfgfc
   for acc in cfg
     remaining_accounts := remaining_accounts + 1
-    process_account acc.jid, acc.resource, acc.password
+    process_account acc['jid'], acc['resource'], acc['password'], acc['preferred-sasl']
